@@ -1,7 +1,32 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Layout } from "antd";
+import AppHeader from "./components/commons/Header";
+import AppFooter from "./components/commons/Footer";
+import "./App.css";
+
+const { Content } = Layout;
+
+const RegisterPage = lazy(() => import("./components/auth/Register"));
+// const LoginPage = lazy(() => import("./components/auth/Login"));
 
 const App: React.FC = () => {
-  return <></>;
+  return (
+    <Router>
+      <Layout style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <AppHeader />
+        <Content style={{ padding: "0 50px", flex: 1, overflow: "auto" }}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/register" element={<RegisterPage />} />
+              {/* <Route path="/login" element={<LoginPage />} */}
+            </Routes>
+          </Suspense>
+        </Content>
+        <AppFooter />
+      </Layout>
+    </Router>
+  );
 };
 
 export default App;
