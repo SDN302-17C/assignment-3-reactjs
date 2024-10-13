@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message, Card, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IUser from "../../models/User";
 import { register } from "../../services/api/auth.api";
 
@@ -9,6 +9,7 @@ const { Title } = Typography;
 
 const RegisterPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values: IUser) => {
     const modifiedValues = { ...values, _id: "" };
@@ -18,6 +19,9 @@ const RegisterPage: React.FC = () => {
     try { 
       await register(modifiedValues);
       message.success("Registration successful!");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } catch (error){
       console.error("Registration error:", error);
       message.error("Registration failed.");
@@ -43,9 +47,7 @@ const RegisterPage: React.FC = () => {
           <Form.Item
             name="fullName"
             label="Full Name"
-            rules={[
-              { required: true, message: "Please input your full name!" },
-            ]}
+            rules={[{ required: true, message: "Please input your full name!" }]}
           >
             <Input />
           </Form.Item>

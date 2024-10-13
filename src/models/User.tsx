@@ -3,4 +3,5 @@ export default interface IUser{
     fullName: string;
     username: string;
     password: string;
+    admin: boolean;
 }

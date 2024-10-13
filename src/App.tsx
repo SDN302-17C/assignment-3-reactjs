@@ -4,28 +4,39 @@ import { Layout } from "antd";
 import AppHeader from "./components/commons/Header";
 import AppFooter from "./components/commons/Footer";
 import "./App.css";
+import { AuthProvider } from "./context/AuthContext";
 
 const { Content } = Layout;
 
+const HomePage = lazy(() => import("./components/HomePage"));
 const RegisterPage = lazy(() => import("./components/auth/Register"));
-// const LoginPage = lazy(() => import("./components/auth/Login"));
+const LoginPage = lazy(() => import("./components/auth/Login"));
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Layout style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-        <AppHeader />
-        <Content style={{ padding: "0 50px", flex: 1, overflow: "auto" }}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route path="/register" element={<RegisterPage />} />
-              {/* <Route path="/login" element={<LoginPage />} */}
-            </Routes>
-          </Suspense>
-        </Content>
-        <AppFooter />
-      </Layout>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Layout
+          style={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <AppHeader />
+          <Content style={{ padding: "0 50px", flex: 1, overflow: "auto" }}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Routes>
+            </Suspense>
+          </Content>
+          <AppFooter />
+        </Layout>
+      </Router>
+    </AuthProvider>
   );
 };
 
