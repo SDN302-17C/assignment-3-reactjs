@@ -40,7 +40,7 @@ const RegisterPage: React.FC = () => {
     >
       <Card
         bordered={false}
-        style={{ width: 600, textAlign: "center", marginTop: 100 }}
+        style={{ width: 400, textAlign: "center", marginTop: 200 }}
       >
         <Title level={3}>Register</Title>
         <Form name="register" onFinish={onFinish} layout="vertical">

@@ -11,6 +11,7 @@ const { Content } = Layout;
 const HomePage = lazy(() => import("./components/HomePage"));
 const RegisterPage = lazy(() => import("./components/auth/Register"));
 const LoginPage = lazy(() => import("./components/auth/Login"));
+const UserList = lazy(() => import("./components/users/UserList"));
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/users" element={<UserList />} />
               </Routes>
             </Suspense>
           </Content>

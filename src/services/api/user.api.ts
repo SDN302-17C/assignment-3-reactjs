@@ -2,8 +2,12 @@ import axios from "axios";
 import { API_BASE_URL } from "../config/config.server";
 import IUser from "../../models/User";
 
-export const getUsers = async () => {
-  const response = await axios.get(`${API_BASE_URL}/users`);
+export const getUsers = async (token: string | null) => {
+  const response = await axios.get("${API_BASE_URL}/users", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Layout, Menu, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const { Header } = Layout;
@@ -16,6 +16,7 @@ const AppHeader: React.FC = () => {
 
   const handleLogout = () => {
     setToken(null);
+    redirect("/");
   };
 
   return (
@@ -41,9 +42,9 @@ const AppHeader: React.FC = () => {
           {user ? (
             <>
               <Menu.Item key="5">
-                <Link to="/profile">
+                <Link to="/">
                   <Avatar
-                    src= "../../../public/avatar.svg"
+                    src= "/avatar.svg"
                     style={{ marginRight: 8 }}
                   />
                   {user.fullName}
