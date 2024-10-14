@@ -25,7 +25,7 @@ const App: React.FC = () => {
           }}
         >
           <AppHeader />
-          <Content style={{ padding: "0 50px", flex: 1, overflow: "auto" }}>
+          <Content style={{ padding: "0 50px", flex: 1, overflow: "auto"}}>
             <Suspense fallback={<div>Loading...</div>}>
               <Routes>
                 <Route path="/" element={<HomePage />} />

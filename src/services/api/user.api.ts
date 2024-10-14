@@ -40,9 +40,9 @@ export const postUser = async (user: IUser, token: string | null) => {
   }
 };
 
-export const putUser = async (user: IUser, token: string | null) => {
+export const putUser = async (user: Partial<IUser>, token: string | null) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/users`, user, {
+    const response = await axios.put(`${API_BASE_URL}/users/${user._id}`, user, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
