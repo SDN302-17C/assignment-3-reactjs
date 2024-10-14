@@ -11,7 +11,7 @@ const { Content } = Layout;
 const HomePage = lazy(() => import("./components/HomePage"));
 const RegisterPage = lazy(() => import("./components/auth/Register"));
 const LoginPage = lazy(() => import("./components/auth/Login"));
-const UserList = lazy(() => import("./components/users/UserList"));
+const UserList = lazy(() => import("./components/UserList"));
 
 const App: React.FC = () => {
   return (
@@ -25,7 +25,7 @@ const App: React.FC = () => {
           }}
         >
           <AppHeader />
-          <Content style={{ padding: "0 50px", flex: 1, overflow: "auto"}}>
+          <Content style={{ padding: "0 50px", flex: 1, overflow: "auto" }}>
             <Suspense fallback={<div>Loading...</div>}>
               <Routes>
                 <Route path="/" element={<HomePage />} />

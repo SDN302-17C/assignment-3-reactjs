@@ -14,14 +14,14 @@ import {
   Input,
   Switch,
 } from "antd";
-import IUser from "../../models/User";
-import { AuthContext } from "../../context/AuthContext";
+import IUser from "../models/User";
+import { AuthContext } from "../context/AuthContext";
 import {
   getUsers,
   deleteUser,
   putUser,
   postUser,
-} from "../../services/api/user.api";
+} from "../services/api/user.api";
 
 const { Title } = Typography;
 const { confirm } = Modal;
@@ -75,11 +75,11 @@ const UserList: React.FC = () => {
 
   const showDeleteConfirm = (userID: string) => {
     confirm({
-      title: 'Are you sure you want to delete this user?',
-      content: 'This action cannot be undone.',
-      okText: 'Yes',
-      okType: 'danger',
-      cancelText: 'No',
+      title: "Are you sure you want to delete this user?",
+      content: "This action cannot be undone.",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
       width: 600, // Adjust the width as needed
       centered: true, // Center the confirmation dialog
       onOk: () => handleDelete(userID),
