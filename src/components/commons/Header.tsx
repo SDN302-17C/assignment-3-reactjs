@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Layout, Menu, Avatar } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const { Header } = Layout;
@@ -8,6 +8,8 @@ const { Header } = Layout;
 const AppHeader: React.FC = () => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedKey, setSelectedKey] = useState(location.pathname);
 
   const { user, setToken } = authContext || {};
 
@@ -19,6 +21,10 @@ const AppHeader: React.FC = () => {
       navigate("/");
     }
   }, [user, navigate, authContext]);
+
+  useEffect(() => {
+    setSelectedKey(location.pathname);
+  }, [location.pathname]);
 
   if (!authContext) {
     return null;
@@ -33,19 +39,24 @@ const AppHeader: React.FC = () => {
 
   return (
     <Header>
-      <Menu theme="dark" mode="horizontal" style={{ display: "flex" }}>
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        selectedKeys={[selectedKey]}
+        style={{ display: "flex" }}
+      >
         <div style={{ display: "flex", flexGrow: 1 }}>
-          <Menu.Item key="1">
+          <Menu.Item key="/">
             <Link to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="/quizzes">
             <Link to="/quizzes">Quizzes</Link>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="/questions">
             <Link to="/questions">Questions</Link>
           </Menu.Item>
           {user?.admin === true && (
-            <Menu.Item key="4">
+            <Menu.Item key="/users">
               <Link to="/users">Users</Link>
             </Menu.Item>
           )}
@@ -53,22 +64,22 @@ const AppHeader: React.FC = () => {
         <div style={{ display: "flex" }}>
           {user ? (
             <>
-              <Menu.Item key="5">
+              <Menu.Item key="/profile">
                 <Link to="/">
                   <Avatar src="/avatar.svg" style={{ marginRight: 8 }} />
                   {user.fullName}
                 </Link>
               </Menu.Item>
-              <Menu.Item key="6" onClick={handleLogout}>
+              <Menu.Item key="logout" onClick={handleLogout}>
                 Logout
               </Menu.Item>
             </>
           ) : (
             <>
-              <Menu.Item key="8">
+              <Menu.Item key="/login">
                 <Link to="/login">Login</Link>
               </Menu.Item>
-              <Menu.Item key="7">
+              <Menu.Item key="/register">
                 <Link to="/register">Register</Link>
               </Menu.Item>
             </>
