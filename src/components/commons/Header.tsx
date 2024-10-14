@@ -38,49 +38,49 @@ const AppHeader: React.FC = () => {
   };
 
   return (
-    <Header>
+    <Header style={{ backgroundColor: "#001529" }}>
       <Menu
         theme="dark"
         mode="horizontal"
         selectedKeys={[selectedKey]}
-        style={{ display: "flex" }}
+        style={{ display: "flex", color: "white", fontWeight: "bold" }}
       >
         <div style={{ display: "flex", flexGrow: 1 }}>
-          <Menu.Item key="/">
-            <Link to="/">Home</Link>
+          <Menu.Item key="/" style={{ color: "white", fontWeight: "bold" }}>
+            <Link to="/" style={{ color: "white", fontWeight: "bold" }}>Home</Link>
           </Menu.Item>
-          <Menu.Item key="/quizzes">
-            <Link to="/quizzes">Quizzes</Link>
+          <Menu.Item key="/quizzes" style={{ color: "white", fontWeight: "bold" }}>
+            <Link to="/quizzes" style={{ color: "white", fontWeight: "bold" }}>Quizzes</Link>
           </Menu.Item>
-          <Menu.Item key="/questions">
-            <Link to="/questions">Questions</Link>
+          <Menu.Item key="/questions" style={{ color: "white", fontWeight: "bold" }}>
+            <Link to="/questions" style={{ color: "white", fontWeight: "bold" }}>Questions</Link>
           </Menu.Item>
           {user?.admin === true && (
-            <Menu.Item key="/users">
-              <Link to="/users">Users</Link>
+            <Menu.Item key="/users" style={{ color: "white", fontWeight: "bold" }}>
+              <Link to="/users" style={{ color: "white", fontWeight: "bold" }}>Users</Link>
             </Menu.Item>
           )}
         </div>
         <div style={{ display: "flex" }}>
           {user ? (
             <>
-              <Menu.Item key="/profile">
-                <Link to="/">
+              <Menu.Item key="/profile" style={{ color: "white", fontWeight: "bold" }}>
+                <Link to="/" style={{ color: "white", fontWeight: "bold" }}>
                   <Avatar src="/avatar.svg" style={{ marginRight: 8 }} />
                   {user.fullName}
                 </Link>
               </Menu.Item>
-              <Menu.Item key="logout" onClick={handleLogout}>
+              <Menu.Item key="logout" onClick={handleLogout} style={{ color: "white", fontWeight: "bold" }}>
                 Logout
               </Menu.Item>
             </>
           ) : (
             <>
-              <Menu.Item key="/login">
-                <Link to="/login">Login</Link>
+              <Menu.Item key="/login" style={{ color: "white", fontWeight: "bold" }}>
+                <Link to="/login" style={{ color: "white", fontWeight: "bold" }}>Login</Link>
               </Menu.Item>
-              <Menu.Item key="/register">
-                <Link to="/register">Register</Link>
+              <Menu.Item key="/register" style={{ color: "white", fontWeight: "bold" }}>
+                <Link to="/register" style={{ color: "white", fontWeight: "bold" }}>Register</Link>
               </Menu.Item>
             </>
           )}

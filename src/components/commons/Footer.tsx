@@ -12,10 +12,13 @@ const AppFooter: React.FC = () => {
         position: "fixed",
         width: "100%",
         bottom: 0,
+        backgroundColor: "#001529",
+        margin: 0,
+        padding: "10px 0",
       }}
     >
-      <Title level={5}>
-        Quizzes App ©2024 - Develop with{" "}
+      <Title level={4} style={{ color: "white", margin: 0 }}>
+        Baka Quizzes ©2024 - Develop with{" "}
         <a
           href="https://github.com/bakaqc"
           target="_blank"
