@@ -6,5 +6,5 @@ export default interface IQuestion{
     options: string[];
     keywords: string[];
     correctAnswerIndex: number;
-    author: IUser;
+    author: IUser | null;
 }

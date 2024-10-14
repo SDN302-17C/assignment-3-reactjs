@@ -80,8 +80,8 @@ const UserList: React.FC = () => {
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
-      width: 600, // Adjust the width as needed
-      centered: true, // Center the confirmation dialog
+      width: 600, 
+      centered: true, 
       onOk: () => handleDelete(userID),
     });
   };
@@ -181,7 +181,12 @@ const UserList: React.FC = () => {
 
   return (
     <div style={{ padding: "20px", textAlign: "center" }}>
-      <Title level={1}>User List</Title>
+              <Title
+          level={2}
+          style={{ textAlign: "center", fontSize: "36px", color: "#1890ff" }}
+        >
+          User List
+        </Title>
       <Spin spinning={loading}>
         <Table
           dataSource={users}
@@ -207,7 +212,7 @@ const UserList: React.FC = () => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        centered // Center the modal
+        centered 
       >
         <Form form={form} layout="vertical">
           {!currentUser && (

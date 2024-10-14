@@ -12,6 +12,7 @@ const HomePage = lazy(() => import("./components/HomePage"));
 const RegisterPage = lazy(() => import("./components/auth/Register"));
 const LoginPage = lazy(() => import("./components/auth/Login"));
 const UserList = lazy(() => import("./components/UserList"));
+const QuestionList = lazy(() => import("./components/QuestionList"));
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/users" element={<UserList />} />
+                <Route path="/questions" element={<QuestionList />} /> 
               </Routes>
             </Suspense>
           </Content>

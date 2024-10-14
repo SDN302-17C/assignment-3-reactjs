@@ -1,6 +1,6 @@
 import axios from "axios";
-import { API_BASE_URL } from "../config/config.server";
 import IQuestion from "../../models/Question";
+import { API_BASE_URL } from "../config/config.server";
 
 export const getQuestions = async () => {
   const response = await axios.get(`${API_BASE_URL}/questions`);
@@ -12,32 +12,54 @@ export const getQuestionById = async (questionID: string) => {
   return response.data;
 };
 
-export const postQuestion = async (question: IQuestion) => {
-  const response = await axios.post(`${API_BASE_URL}/questions`, question);
+export const postQuestion = async (question: IQuestion, token: string | null) => {
+  const response = await axios.post(`${API_BASE_URL}/questions`, question, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
 
 export const postQuestionToQuiz = async (
   questionID: string,
-  quizID: string
+  quizID: string,
+  token: string
 ) => {
   const response = await axios.post(
-    `${API_BASE_URL}/questions/${questionID}/${quizID}`
+    `${API_BASE_URL}/questions/${questionID}/${quizID}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return response.data;
 };
 
-export const putQuestion = async (questionID: string, question: IQuestion) => {
+export const putQuestion = async (
+  questionID: string,
+  question: IQuestion,
+  token: string
+) => {
   const response = await axios.put(
     `${API_BASE_URL}/questions/${questionID}`,
-    question
+    question,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   return response.data;
 };
 
-export const deleteQuestion = async (questionID: string) => {
-  const response = await axios.delete(
-    `${API_BASE_URL}/questions/${questionID}`
-  );
+export const deleteQuestion = async (questionID: string, token: string) => {
+  const response = await axios.delete(`${API_BASE_URL}/questions/${questionID}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
