@@ -1,22 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Layout, Menu, Avatar } from "antd";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const { Header } = Layout;
 
 const AppHeader: React.FC = () => {
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { user, setToken } = authContext || {};
+
+  useEffect(() => {
+    if (!authContext) {
+      return;
+    }
+    if (user && !user.admin) {
+      navigate("/");
+    }
+  }, [user, navigate, authContext]);
 
   if (!authContext) {
     return null;
   }
 
-  const { user, setToken } = authContext;
-
   const handleLogout = () => {
-    setToken(null);
-    redirect("/");
+    if (setToken) {
+      setToken(null);
+    }
+    navigate("/");
   };
 
   return (
@@ -43,10 +55,7 @@ const AppHeader: React.FC = () => {
             <>
               <Menu.Item key="5">
                 <Link to="/">
-                  <Avatar
-                    src= "/avatar.svg"
-                    style={{ marginRight: 8 }}
-                  />
+                  <Avatar src="/avatar.svg" style={{ marginRight: 8 }} />
                   {user.fullName}
                 </Link>
               </Menu.Item>
@@ -56,11 +65,11 @@ const AppHeader: React.FC = () => {
             </>
           ) : (
             <>
-              <Menu.Item key="7">
-                <Link to="/register">Register</Link>
-              </Menu.Item>
               <Menu.Item key="8">
                 <Link to="/login">Login</Link>
+              </Menu.Item>
+              <Menu.Item key="7">
+                <Link to="/register">Register</Link>
               </Menu.Item>
             </>
           )}
