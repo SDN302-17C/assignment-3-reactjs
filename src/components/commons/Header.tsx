@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Layout, Menu, Avatar } from "antd";
+import { Layout, Menu, Avatar, Tag } from "antd";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -47,40 +47,86 @@ const AppHeader: React.FC = () => {
       >
         <div style={{ display: "flex", flexGrow: 1 }}>
           <Menu.Item key="/" style={{ color: "white", fontWeight: "bold" }}>
-            <Link to="/" style={{ color: "white", fontWeight: "bold" }}>Home</Link>
+            <Link to="/" style={{ color: "white", fontWeight: "bold" }}>
+              Home
+            </Link>
           </Menu.Item>
-          <Menu.Item key="/quizzes" style={{ color: "white", fontWeight: "bold" }}>
-            <Link to="/quizzes" style={{ color: "white", fontWeight: "bold" }}>Quizzes</Link>
+          <Menu.Item
+            key="/quizzes"
+            style={{ color: "white", fontWeight: "bold" }}
+          >
+            <Link to="/quizzes" style={{ color: "white", fontWeight: "bold" }}>
+              Quizzes
+            </Link>
           </Menu.Item>
-          <Menu.Item key="/questions" style={{ color: "white", fontWeight: "bold" }}>
-            <Link to="/questions" style={{ color: "white", fontWeight: "bold" }}>Questions</Link>
+          <Menu.Item
+            key="/questions"
+            style={{ color: "white", fontWeight: "bold" }}
+          >
+            <Link
+              to="/questions"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Questions
+            </Link>
           </Menu.Item>
           {user?.admin === true && (
-            <Menu.Item key="/users" style={{ color: "white", fontWeight: "bold" }}>
-              <Link to="/users" style={{ color: "white", fontWeight: "bold" }}>Users</Link>
+            <Menu.Item
+              key="/users"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              <Link to="/users" style={{ color: "white", fontWeight: "bold" }}>
+                Users
+              </Link>
             </Menu.Item>
           )}
         </div>
         <div style={{ display: "flex" }}>
           {user ? (
             <>
-              <Menu.Item key="/profile" style={{ color: "white", fontWeight: "bold" }}>
+              <Menu.Item
+                key="/profile"
+                style={{ color: "white", fontWeight: "bold" }}
+              >
                 <Link to="/" style={{ color: "white", fontWeight: "bold" }}>
+                  <Tag color={user.admin ? "red" : "green"}>
+                    {user.admin ? "ADMIN" : "USER"}
+                  </Tag>
                   <Avatar src="/avatar.svg" style={{ marginRight: 8 }} />
-                  {user.fullName}
+                  {user.fullName}{" "}
                 </Link>
               </Menu.Item>
-              <Menu.Item key="logout" onClick={handleLogout} style={{ color: "white", fontWeight: "bold" }}>
+              <Menu.Item
+                key="logout"
+                onClick={handleLogout}
+                style={{ color: "white", fontWeight: "bold" }}
+              >
                 Logout
               </Menu.Item>
             </>
           ) : (
             <>
-              <Menu.Item key="/login" style={{ color: "white", fontWeight: "bold" }}>
-                <Link to="/login" style={{ color: "white", fontWeight: "bold" }}>Login</Link>
+              <Menu.Item
+                key="/login"
+                style={{ color: "white", fontWeight: "bold" }}
+              >
+                <Link
+                  to="/login"
+                  style={{ color: "white", fontWeight: "bold" }}
+                >
+                  Login
+                </Link>
               </Menu.Item>
-              <Menu.Item key="/register" style={{ color: "white", fontWeight: "bold" }}>
-                <Link to="/register" style={{ color: "white", fontWeight: "bold" }}>Register</Link>
+              <Menu.Item
+                key="/register"
+                style={{ color: "white", fontWeight: "bold" }}
+              >
+                <Link
+                  to="/register"
+                  style={{ color: "white", fontWeight: "bold" }}
+                >
+                  Register
+                </Link>
               </Menu.Item>
             </>
           )}
